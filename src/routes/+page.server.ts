@@ -4,18 +4,18 @@
 import { RequestHandler } from '@sveltejs/kit';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import { SECRET_API_KEY } from '$env/static/private'
+import { SECRET_API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID } from '$env/static/private'
 import type { PageServerLoad } from './$types';
 
 // Initialize Firebase Admin SDK with your service account credentials
 
 const firebaseConfig = {
     apiKey: SECRET_API_KEY,
-    authDomain: "cuentosjudios-com.firebaseapp.com",
-    projectId: "cuentosjudios-com",
-    storageBucket: "cuentosjudios-com.appspot.com",
-    messagingSenderId: "267923342673",
-    appId: "1:267923342673:web:affb249d2d73ce8a4eff70"
+    authDomain: AUTH_DOMAIN,
+    projectId: PROJECT_ID,
+    storageBucket: STORAGE_BUCKET,
+    messagingSenderId : MESSAGING_SENDER_ID, 
+    appId: APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
@@ -30,9 +30,13 @@ const fetchDataFromFirestore: PageServerLoad = async () => {
       stories.push(doc.data());
     });
 
+    // ordering stories by folder number
+    stories.sort((a, b) => (a.folder > b.folder ? -1 : 1));
+    
     return {
       stories,
     };
 };
+
 
 export { fetchDataFromFirestore as load };
