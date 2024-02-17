@@ -7,7 +7,6 @@
 </script>
 
 <body>
-
    <div class="card card-bordered w-96 bg-base-100 shadow-xl">
          <div class="card-body">
              <h2 class="card-title"> {story.name} </h2>
@@ -40,8 +39,6 @@
     </div>
     <br />
 </body>
-
-
 
 <style>
     #player {

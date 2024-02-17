@@ -1,7 +1,11 @@
-<script lang="ts">
-    import { stories } from '$lib/stories/index.ts';
-    import StoryCard from '$lib/components/StoryCard.svelte';
+<!-- B"H -->
 
+<script lang="ts">
+    import StoryCard from '$lib/components/StoryCard.svelte';
+	import type { PageData } from './$types';
+	
+	export let data: PageData;
+    const stories = data.stories;
 
 </script>
 
@@ -13,7 +17,7 @@
     <div class="flex flex-wrap">
         {#each stories as story}
             <div class="w-full sm:w-1/1 md:w-1/2 lg:w-1/3 xl:w-1/4">
-                    <StoryCard {story} />
+                <StoryCard {story} />
             </div> 
         {/each}
     </div>
