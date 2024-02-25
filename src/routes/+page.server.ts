@@ -4,7 +4,8 @@
 import { RequestHandler } from '@sveltejs/kit';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import { SECRET_API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID } from '$env/static/private'
+import { SECRET_API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID } from
+'$env/static/private';
 import type { PageServerLoad } from './$types';
 
 // Initialize Firebase Admin SDK with your service account credentials
