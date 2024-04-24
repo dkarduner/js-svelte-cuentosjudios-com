@@ -4,6 +4,18 @@
 <script lang="ts">
     import type { Story } from '$lib/types'; 
     export let story: Story;
+
+    let player: HTMLAudioElement | null = null;
+
+    function stopOtherPlayers() {
+    // Stop other players when this player is clicked
+    const players = document.querySelectorAll('audio');
+    players.forEach((p: HTMLAudioElement) => {
+        if (p !== player && !p.paused) {
+            p.pause();
+            }
+        });
+    };
 </script>
 
 <body>
@@ -21,7 +33,7 @@
                  preload="none"
                  id="player"
                  src={story.audio}
-                 controls
+                 controls bind:this={player} on:play={stopOtherPlayers}
                  >
              </audio>
  
